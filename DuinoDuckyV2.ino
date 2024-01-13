@@ -74,7 +74,8 @@ void detonatePayload(){
           case 2 : savedNotepadMessage("Gotcha!!" , "Fun Message For you!");
                    break;
           //Payload 3 slot
-          case 3 : break;
+          case 3 : fullWindowsDetonation();
+                   break;
           //Payload 4 slot
           case 4 : break;
           //Payload 5 slot
@@ -106,6 +107,7 @@ void detonatePayload(){
 
 //Windows
 //Opens the Rick Roll youtube video, starts the video, and puts the video into fullscreen
+//Usage: Immediate and fun proof of concept
 void rickRoll(){
   Keyboard.begin();
 
@@ -139,6 +141,7 @@ void rickRoll(){
 
 //Windows
 //Opens notepad.exe and types out the message[] param
+//Usage: Immediate proof of concept
 void notepadMessage(char message[]){
   Keyboard.begin();
 
@@ -168,6 +171,7 @@ void notepadMessage(char message[]){
 //Windows
 //Opens notepad.exe, types out the message[] param, then saves the file with the filename[] param as the file name
 //Does not choose a directory to save the file to. File is saved in whatever directory comes up first when pressing Ctrl+S
+//Usage: Proof of concept but with some stealth.
 void savedNotepadMessage(char message[], char filename[]){
   Keyboard.begin();
 
@@ -208,6 +212,16 @@ void savedNotepadMessage(char message[], char filename[]){
   Keyboard.releaseAll();
 }
 
+//Windows
+//Detonates all windows payloads contained in this sketch.
+//Usage: Fun. Chaos. 
+void fullWindowsDetonation(){
+  rickRoll();
+  delay(100);
+  savedNotepadMessage("Secret text file you discover later :)", "Important Message");
+  notepadMessage("Some stuff happened.");
+}
+
 //used to make ENTER/RETURN keypresses work better in payloads
 void typeKey(int key){
   Keyboard.press(key);
@@ -217,8 +231,8 @@ void typeKey(int key){
 
 //functions that set the status lights
 void setCurrentPayload(){
-  cyclePayloadBack(); //triggers when button 1 is pressed to cycle current payload back one mode
-  cyclePayloadForward(); //triggers when button 2 is pressed to cycle current payload forward one mode
+  cyclePayloadBack(); //triggers when button 1 is pressed to cycle current payload back one payload
+  cyclePayloadForward(); //triggers when button 2 is pressed to cycle current payload forward one payload
 }
 
 void cyclePayloadBack(){
